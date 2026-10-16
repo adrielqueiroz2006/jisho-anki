@@ -63,6 +63,8 @@ def test_botoes_do_dicionario_chamam_as_funcoes(app):
 def test_janela_de_escolha_lista_as_entradas_e_devolve_a_linha(app):
     from addon import dbmanager, editor, fill
 
+    if dbmanager.find_db(settings.defaults()) is None:
+        pytest.skip("rode tools/build_db.py antes")
     entries = fill.resolve_word(dbmanager.get_connection(settings.defaults()), "生").entries
     d = editor.ChooseEntryDialog(None, "生", entries)
     assert d.list.count() == len(entries) > 1 and d.list.currentRow() == 0
@@ -78,4 +80,5 @@ def test_janela_de_configuracoes_como_imagem(app, tmp_path):
     d = SettingsDialog(None, settings.defaults(), dbmanager.describe_db(settings.defaults()), lambda: None, lambda: None)
     d.resize(640, 480)
     out = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "build", "config_dialog.png")
+    os.makedirs(os.path.dirname(out), exist_ok=True)
     assert d.grab().save(out)
