@@ -1,0 +1,13 @@
+# dados e artefatos gerados (tools/build_db.py, tools/package.py, tools/preview.py)
+data/
+build/
+# bibliotecas de terceiros instaladas por tools/setup_vendor.py (o edge_tts, com alteração nossa, é versionado)
+addon/vendor/janome/
+addon/vendor/Janome-*.dist-info/
+addon/vendor/gtts/
+addon/vendor/gTTS-*.dist-info/
+# criado pelo Anki dentro da pasta do addon (dicionário baixado)
+addon/user_files/
+__pycache__/
+*.pyc
+.pytest_cache/

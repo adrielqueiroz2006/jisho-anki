@@ -1,0 +1,152 @@
+/* jisho-card:template-v4 — gerado pelo addon Jisho Card; edições aqui são sobrescritas ao atualizar */
+
+@font-face { font-family: "Shippori Mincho"; font-weight: 400; src: url("_shipporimincho-regular.woff2") format("woff2"); }
+@font-face { font-family: "Shippori Mincho"; font-weight: 700; src: url("_shipporimincho-bold.woff2") format("woff2"); }
+@font-face { font-family: "Literata"; font-weight: 200 900; font-style: normal; src: url("_literata.woff2") format("woff2"); }
+@font-face { font-family: "Literata"; font-weight: 200 900; font-style: italic; src: url("_literata-italic.woff2") format("woff2"); }
+
+@counter-style circulado {
+  system: fixed;
+  symbols: "❶" "❷" "❸" "❹" "❺" "❻" "❼" "❽" "❾" "❿" "⓫" "⓬" "⓭" "⓮" "⓯" "⓰" "⓱" "⓲" "⓳" "⓴";
+  suffix: " ";
+  fallback: decimal;
+}
+
+/* ---------- cores ---------- */
+.card {
+  --papel: #FBF8F1;
+  --tinta: #1F1B16;
+  --carimbo: #B7282E;
+  --cinza: #8A8178;
+  --linha: #DDD5C6;
+  --caixa-fundo: #F6F1E6;
+  --traco-feito: #2B2620;
+  --traco-atual: #E5457F;
+  --traco-fantasma: #E4DCCB;
+  --grade: #D6CCB8;
+  color-scheme: light;
+  --fonte-jp: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK JP", "Noto Serif JP", serif;
+  --fonte-lat: "Literata", "Noto Serif", Georgia, serif;
+}
+.card.nightMode, .nightMode .card, .card.night_mode, .night_mode .card {
+  --papel: #1C1A17;
+  --tinta: #EDE6DA;
+  --carimbo: #E0645A;
+  --cinza: #9C9388;
+  --linha: #3B362F;
+  --caixa-fundo: #23201C;
+  --traco-feito: #EDE6DA;
+  --traco-atual: #FF6FA8;
+  --traco-fantasma: #36312A;
+  --grade: #45403A;
+  color-scheme: dark;
+}
+
+/* ---------- base ---------- */
+.card {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--fonte-lat);
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: left;
+}
+.jp, .jc .palavra { font-family: var(--fonte-jp); }
+.jc { max-width: 640px; margin: 0 auto; padding: 26px 20px 34px; }
+.jc a { color: var(--carimbo); }
+
+/* ---------- frente ---------- */
+.frente { min-height: 55vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.frente .palavra { font-size: 72px; line-height: 1.25; font-weight: 400; }
+.frente-audio { margin-top: 14px; opacity: .75; }
+
+/* ---------- cabeçalho do verbete ---------- */
+.cab { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1.5px solid var(--tinta); }
+.cab .leitura { font-size: 19px; color: var(--carimbo); letter-spacing: .08em; }
+.cab .palavra { font-size: 60px; line-height: 1.2; font-weight: 700; }
+.cab-audio { padding-bottom: 10px; }
+
+.classe { margin-top: 14px; color: var(--cinza); font-size: 15px; }
+.classe .pos-jp { font-family: var(--fonte-jp); color: var(--tinta); margin-right: .35em; }
+.classe .pos-tag { font-size: 13px; opacity: .8; }
+
+.significado { margin-top: 12px; font-size: 19px; }
+.significado ol { margin: 0; padding: 0; list-style: circulado inside; }
+.significado li { margin: .35em 0; padding-left: .2em; }
+.significado li::marker { color: var(--carimbo); font-family: var(--fonte-jp); }
+.significado .nota { color: var(--cinza); font-size: 14px; }
+
+/* ---------- caixas ---------- */
+.caixa { position: relative; margin-top: 30px; padding: 20px 16px 14px; border: 1px solid var(--linha); border-radius: 3px; background: var(--caixa-fundo); }
+.caixa .rotulo { position: absolute; top: -.75em; left: 12px; margin: 0; padding: 0 8px; background: var(--papel); color: var(--carimbo); font-size: 14px; font-weight: 700; letter-spacing: .18em; line-height: 1.5; }
+
+/* selo 訓 / 音 */
+.selo { display: inline-block; flex: none; width: 1.55em; height: 1.55em; line-height: 1.4em; text-align: center; border: 1.5px solid var(--carimbo); border-radius: 2px; color: var(--carimbo); font-family: var(--fonte-jp); font-size: 13px; font-weight: 700; margin-right: .7em; }
+
+/* ---------- kanji ---------- */
+.kanji-corpo { display: flex; flex-wrap: wrap; gap: 18px 24px; align-items: flex-start; }
+.tracos { display: flex; flex-wrap: wrap; gap: 10px; }
+.kanji-info { flex: 1 1 220px; min-width: 0; }
+.ki { display: flex; gap: 14px; align-items: flex-start; }
+.ki + .ki { margin-top: 14px; padding-top: 14px; border-top: 1px dotted var(--linha); }
+.ki-glifo { font-family: var(--fonte-jp); font-size: 42px; line-height: 1; font-weight: 700; }
+.ki-corpo { min-width: 0; }
+.ki-linha { display: flex; align-items: baseline; margin: .15em 0; font-family: var(--fonte-jp); font-size: 17px; }
+.ki-linha .selo { align-self: center; }
+.raiz { font-weight: 700; color: var(--tinta); }
+.okuri { color: var(--cinza); font-weight: 400; }
+.ki-meta { margin-top: .35em; color: var(--cinza); font-size: 13.5px; font-family: var(--fonte-jp); }
+.ki-sig { margin-top: .15em; color: var(--cinza); font-size: 13.5px; font-style: italic; }
+
+/* traços animados (SVG gerado pelo addon; as chaves de animação vão dentro do próprio SVG) */
+.kk { width: 124px; height: 124px; flex: none; overflow: visible; }
+.kk-moldura { fill: var(--papel); stroke: var(--grade); stroke-width: 1; }
+.kk-grade { fill: none; stroke: var(--grade); stroke-width: .8; stroke-dasharray: 3 3; }
+.kk-fantasma path, .kk-tracos path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.kk-fantasma path { stroke: var(--traco-fantasma); stroke-width: 4.2; }
+.kk-tracos path { stroke: var(--traco-feito); stroke-width: 4.6; stroke-dasharray: 1; }
+.kk-numeros text { font-family: var(--fonte-lat); font-size: 8.5px; font-weight: 700; fill: var(--traco-atual); text-anchor: middle; dominant-baseline: central; paint-order: stroke; stroke: var(--papel); stroke-width: 2.2px; stroke-linejoin: round; }
+/* versão estática (impressão): todos os traços na tinta, sem animação */
+.kk-estatico .kk-tracos path { stroke-dasharray: none; }
+@media (prefers-reduced-motion: reduce) {
+  .kk-tracos path, .kk-numeros text { animation: none !important; opacity: 1 !important; stroke-dashoffset: 0 !important; }
+}
+
+/* ---------- exemplo ---------- */
+.ex-jp { font-size: 24px; line-height: 2.1; }
+.ex-jp rt { font-size: .42em; color: var(--cinza); }
+.ex-jp b, .ex-jp .alvo { color: var(--carimbo); font-weight: 700; }
+.ex-trad { margin-top: 2px; font-style: italic; color: var(--tinta); opacity: .9; }
+/* áudio da frase: <audio> com controles, que não toca sozinho (o [sound:] do Anki tocaria) */
+.ex-audio { margin-top: 12px; }
+.ex-audio audio { display: block; width: 100%; max-width: 300px; height: 34px; }
+
+/* ---------- conjugação ---------- */
+.conj { margin-top: 28px; border-top: 1px solid var(--linha); padding-top: 14px; }
+.conj summary { cursor: pointer; color: var(--carimbo); font-weight: 700; letter-spacing: .06em; }
+.conj table { width: 100%; margin-top: 12px; border-collapse: collapse; font-size: 15px; }
+.conj th, .conj td { padding: 7px 8px; border-bottom: 1px solid var(--linha); text-align: left; vertical-align: top; }
+.conj th { font-family: var(--fonte-jp); font-weight: 700; white-space: nowrap; }
+.conj td.forma { font-family: var(--fonte-jp); font-size: 19px; line-height: 1.9; }
+.conj td.forma .alt { color: var(--cinza); font-size: 15px; }
+.conj .uso { color: var(--cinza); font-size: 14px; }
+.conj .aviso { display: block; color: var(--cinza); font-size: 12.5px; }
+.conj rt { font-size: .5em; color: var(--cinza); }
+
+.notas { margin-top: 26px; padding-top: 12px; border-top: 1px dotted var(--linha); color: var(--cinza); font-size: 15px; }
+
+/* ---------- celular ---------- */
+@media (max-width: 520px) {
+  .jc { padding: 18px 14px 28px; }
+  .frente .palavra { font-size: 56px; }
+  .cab .palavra { font-size: 48px; }
+  .ex-jp { font-size: 21px; }
+  .kanji-corpo { flex-direction: column; }
+  .tracos { justify-content: center; width: 100%; }
+  .kanji-info { flex-basis: auto; width: 100%; }
+  .conj table, .conj tbody, .conj tr { display: block; }
+  .conj th { display: block; border: 0; padding-bottom: 0; }
+  .conj td { display: block; border: 0; padding-top: 2px; }
+  .conj tr { border-bottom: 1px solid var(--linha); padding: 6px 0; }
+}

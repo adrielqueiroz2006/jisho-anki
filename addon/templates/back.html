@@ -1,0 +1,43 @@
+<div class="jc verso">
+
+  <header class="cab">
+    <div class="cab-texto">
+      {{#Leitura}}<div class="leitura jp">{{Leitura}}</div>{{/Leitura}}
+      <div class="palavra jp">{{Palavra}}</div>
+    </div>
+    <div class="cab-audio">{{ÁudioPalavra}}</div>
+  </header>
+
+  {{#ClasseGramatical}}<div class="classe">{{ClasseGramatical}}</div>{{/ClasseGramatical}}
+
+  {{#Significado}}<div class="significado">{{Significado}}</div>{{/Significado}}
+
+  {{#KanjiInfo}}
+  <section class="caixa kanji">
+    <h2 class="rotulo jp">漢字</h2>
+    <div class="kanji-corpo">
+      {{#Traços}}<div class="tracos">{{Traços}}</div>{{/Traços}}
+      <div class="kanji-info">{{KanjiInfo}}</div>
+    </div>
+  </section>
+  {{/KanjiInfo}}
+
+  {{#Exemplo}}
+  <section class="caixa exemplo">
+    <h2 class="rotulo jp">例文</h2>
+    <div class="ex-jp jp">{{#ExemploFurigana}}{{furigana:ExemploFurigana}}{{/ExemploFurigana}}{{^ExemploFurigana}}{{Exemplo}}{{/ExemploFurigana}}</div>
+    {{#ExemploTradução}}<div class="ex-trad">{{ExemploTradução}}</div>{{/ExemploTradução}}
+    {{#ExemploÁudio}}<div class="ex-audio">{{ExemploÁudio}}</div>{{/ExemploÁudio}}
+  </section>
+  {{/Exemplo}}
+
+  {{#Conjugação}}
+  <details class="conj">
+    <summary><span class="jp">活用</span> Conjugação</summary>
+    {{Conjugação}}
+  </details>
+  {{/Conjugação}}
+
+  {{#Notas}}<div class="notas">{{Notas}}</div>{{/Notas}}
+
+</div>

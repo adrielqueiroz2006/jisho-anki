@@ -1,0 +1,12 @@
+{
+  "onyomi_script": "hiragana",
+  "auto_preencher": true,
+  "max_acepcoes": 6,
+  "gerar_audio": true,
+  "tts_voice": "ja-JP-NanamiNeural",
+  "tts_backends": ["edge", "gtts"],
+  "lote_sobrescrever": false,
+  "perguntar_download": true,
+  "db_url": "https://github.com/adrielqueiroz2006/jisho-anki/releases/download/dicionario-v1/dicionario.sqlite.xz",
+  "db_path": ""
+}
